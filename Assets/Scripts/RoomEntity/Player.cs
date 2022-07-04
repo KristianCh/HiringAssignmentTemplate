@@ -15,20 +15,19 @@ public class Player : RoomEntity
         {
             Destroy(Instance.gameObject);
         }
-
         Instance = this;
-        Type = RoomEntityType.Player;
-    }
 
-    // Update is called once per frame
-    public override void Update()
-    {
-        base.Update();
+        Type = RoomEntityType.Player;
     }
 
     public override void DestroyEntity()
     {
         Instance = null;
-        Destroy(gameObject);
+        base.DestroyEntity();
+    }
+
+    public void MoveToRoom(Room room)
+    {
+        transform.position = room.transform.position + new Vector3(0, -0.4f, 0);
     }
 }

@@ -11,15 +11,10 @@ public class Item : RoomEntity
         Type = RoomEntityType.Item;
     }
 
-    // Update is called once per frame
-    public override void Update()
+    public override bool CompareRoomEntity(RoomEntity other)
     {
-        base.Update();
-    }
-
-    public override void CompareRoomEntity(RoomEntity other)
-    {
-        other.ModifyValue(Value); 
-        DestroyEntity();
+        other.ModifyValue(this.Value);
+        this.DestroyEntity();
+        return true;
     }
 }
