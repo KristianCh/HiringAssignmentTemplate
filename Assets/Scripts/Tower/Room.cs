@@ -57,14 +57,6 @@ public class Room : MonoBehaviour
         }
     }
 
-    public void OnMouseUp()
-    {
-        if (Player.Instance != null)
-        {
-            InteractWithRoom();
-        }
-    }
-
     public void AddRoomEntity(RoomEntity roomEntity)
     {
         RoomEntities.Add(roomEntity);

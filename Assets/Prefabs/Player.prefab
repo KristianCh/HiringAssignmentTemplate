@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6855605252102056465}
   - component: {fileID: 393340095445257338}
   - component: {fileID: 7745689166083072545}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 7316512504415852787}
   - component: {fileID: 1365601857052844818}
   - component: {fileID: 8417872769131248198}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ValueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 1091136445654851494}
   - component: {fileID: 4702429337326416573}
   - component: {fileID: 8415351412373284053}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

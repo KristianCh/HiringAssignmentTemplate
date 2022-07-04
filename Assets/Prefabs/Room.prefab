@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1477094963753277369}
   - component: {fileID: 6650668815964015067}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RoomSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8969836255374663482}
   - component: {fileID: 1484769490742109189}
   - component: {fileID: 951200202198342307}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd41ac9336748a4fb80aec082afaee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomEntities: []
+  RoomEntities: []
+  ParentTower: {fileID: 0}
+  Level: 1
+  RemoveOnEmpty: 1
   EnemyPrefab: {fileID: 706977191741871013, guid: bf7817be5a6d9b04cb86d65ef8021467,
     type: 3}
 --- !u!61 &951200202198342307

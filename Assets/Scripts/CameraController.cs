@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     private Vector3 Offset = new Vector3(5, 2, -10);
     private Vector3 Base = new Vector3(0, 2, -10);
+
     // Start is called before the first frame update
     void Start()
     {
