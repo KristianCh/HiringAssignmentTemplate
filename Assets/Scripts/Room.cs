@@ -20,9 +20,23 @@ public class Room : MonoBehaviour
 
     public void FightRoomEntities()
     {
-        foreach (RoomEntity roomEntity in roomEntities)
+        for (int i = roomEntities.Count - 1; i >= 0; i--)
         {
+            if (Player.Instance == null)
+            {
+                break;
+            }
+            roomEntities[i].CompareRoomEntity(Player.Instance);
 
+            if (roomEntities[i] == null)
+            {
+                roomEntities.RemoveAt(i);
+            }
         }
+    }
+
+    public void OnMouseUp()
+    {
+        FightRoomEntities();
     }
 }

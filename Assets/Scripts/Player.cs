@@ -25,4 +25,10 @@ public class Player : RoomEntity
     {
         base.Update();
     }
+
+    public override void DestroyEntity()
+    {
+        Instance = null;
+        Destroy(gameObject);
+    }
 }

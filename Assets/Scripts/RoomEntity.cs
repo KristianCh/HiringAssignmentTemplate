@@ -76,9 +76,4 @@ public class RoomEntity : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-    public virtual void OnMouseUp()
-    {
-        
-    }
 }

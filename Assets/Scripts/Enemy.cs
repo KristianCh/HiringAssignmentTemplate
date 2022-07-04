@@ -16,10 +16,4 @@ public class Enemy : RoomEntity
     {
         base.Update();
     }
-
-    public override void OnMouseUp()
-    {
-        Debug.Log("MouseUp");
-        CompareRoomEntity(Player.Instance);
-    }
 }
