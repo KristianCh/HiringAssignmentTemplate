@@ -99,11 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8da870e5386e44daeb4391c23c7ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 11
+  Value: 8
+  IsDead: 0
   Type: 0
   ValueText: {fileID: 8417872769131248198}
   m_SpriteRenderer: {fileID: 6855605252102056465}
   DataValues: {fileID: 0}
+  ParentRoom: {fileID: 0}
 --- !u!61 &7745689166083072545
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -166,7 +168,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 10}
+  m_SizeDelta: {x: 8, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1365601857052844818
 CanvasRenderer:

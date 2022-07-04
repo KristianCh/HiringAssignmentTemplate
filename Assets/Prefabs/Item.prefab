@@ -99,10 +99,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 5
+  IsDead: 0
   Type: 2
   ValueText: {fileID: 2923476749061263212}
   m_SpriteRenderer: {fileID: 1513703880091668395}
   DataValues: {fileID: 0}
+  ParentRoom: {fileID: 0}
 --- !u!1 &7092448830611635065
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +242,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 10}
+  m_SizeDelta: {x: 8, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8699452805847679174
 CanvasRenderer:

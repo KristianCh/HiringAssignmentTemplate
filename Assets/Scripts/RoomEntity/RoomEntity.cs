@@ -45,7 +45,7 @@ public class RoomEntity : MonoBehaviour
 
     public virtual bool CompareRoomEntity(RoomEntity other)
     {
-        if (other.Value > this.Value)
+        if (other.Value >= this.Value)
         {
             other.ModifyValue(this.Value);
             this.DestroyEntity();

@@ -36,13 +36,31 @@ public class Tower : MonoBehaviour
 
     public void GenerateTower()
     {
+        // Generate array 0 to Levels
+        int[] indices = new int[Levels];
         for (int i = 0; i < Levels; i++)
         {
+            RoomList.Add(null);
+            indices[i] = i;
+        }
+            
+        // Shuffle array
+        for (int i = 0; i < Levels; i++)
+        {
+            int rnd = Random.Range(0, Levels);
+            int temp = indices[rnd];
+            indices[rnd] = indices[i];
+            indices[i] = temp;
+        }
+
+        for (int j = 0; j < Levels; j++)
+        {
+            int i = indices[j];
             Room newRoom = Instantiate(RoomPrefab, new Vector3(0, i * 2.4f, 0), Quaternion.identity);
             newRoom.Level = i + 1;
             newRoom.transform.SetParent(this.transform, false);
             newRoom.ParentTower = this;
-            RoomList.Add(newRoom);
+            RoomList[i] = newRoom;
 
             newRoom.PopulateRoom(Difficulty);
         }
