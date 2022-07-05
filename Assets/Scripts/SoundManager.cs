@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance;
+    // Audio sources
     public AudioSource FightAudio;
     public AudioSource PickupAudio;
     public AudioSource JumpAudio;
     public AudioSource ButtonAudio;
 
-    // Set up instance
+    public static SoundManager Instance;
+
     public void Start()
     {
         // Set up instance

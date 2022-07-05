@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Follow player if exists
+        // Follow player if exists, else go to start
         if (Player.Instance != null)
         {
             transform.position = Vector3.Lerp(transform.position, Player.Instance.transform.position + PlayerOffset + BaseOffset, Time.deltaTime * FollowSpeed);

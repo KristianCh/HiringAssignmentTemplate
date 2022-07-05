@@ -30,6 +30,7 @@ public class Room : MonoBehaviour
     private static int TotalEnemyValues = 8;
 
     private float EnemySpawnOffset = 1.5f;
+    // Multiplier of value from previously generated room
     private float ValueLevelMult = 2f;
 
     // Start is called before the first frame update
@@ -49,6 +50,7 @@ public class Room : MonoBehaviour
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, TargetPosition, Time.deltaTime * 10);
     }
 
+    // Reset static values - new game
     public static void ResetLevelValues()
     {
         LastLevelMaxValue = 8;

@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    // Towers to spawn in this level
     public int TowersToSpawn = 3;
+    // Total towers generated so far
     public int TowersGenerated = 0;
+    // Total levels of towers generated (rooms)
     public int TotalLevels = 0;
+    // Min and max tower height
     public int MinTowerHeight = 4;
     public int MaxTowerHeight = 10;
+    // Total destroyed towers so far
     public int DestroyedTowers = 0;
+    // Predefined tower heights overriding random generation
     public int[] TowerHeights = new int[0];
+    // Tower prefab
     public Tower TowerPrefab;
+    // Gui game object
     public GameGUI Gui;
 
+    // Instance
     public static LevelManager Instance;
+    // Level data for generation
     public GameLevelScriptableObject GameLevelData;
 
+    // End menu prefab
     public EndGameMenuManager EndGameMenuPrefab;
 
     // Start is called before the first frame update
@@ -66,12 +77,6 @@ public class LevelManager : MonoBehaviour
         TotalLevels += newTower.Levels;
         newTower.GenerateTower();
         TowersGenerated++;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     // Handle end of game
