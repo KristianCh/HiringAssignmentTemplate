@@ -4,25 +4,22 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private Vector3 Offset = new Vector3(5, 2, -10);
-    private Vector3 Base = new Vector3(0, 2, -10);
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Offset from player
+    private Vector3 PlayerOffset = new Vector3(5, 0, 0);
+    // Base offset
+    private Vector3 BaseOffset = new Vector3(0, 2, -10);
 
     // Update is called once per frame
     void Update()
     {
+        // Follow player if exists, else follow player tower
         if (Player.Instance != null)
         {
-            transform.position = Vector3.Lerp(transform.position, Player.Instance.transform.position + Offset, Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, Player.Instance.transform.position + PlayerOffset + BaseOffset, Time.deltaTime);
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, PlayerTower.Instance.transform.position + Base, Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, PlayerTower.Instance.transform.position + BaseOffset, Time.deltaTime);
         }
     }
 }

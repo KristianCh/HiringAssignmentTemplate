@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6855605252102056465}
   - component: {fileID: 393340095445257338}
   - component: {fileID: 7745689166083072545}
+  - component: {fileID: 8507404518643752713}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -106,6 +107,8 @@ MonoBehaviour:
   m_SpriteRenderer: {fileID: 6855605252102056465}
   DataValues: {fileID: 0}
   ParentRoom: {fileID: 0}
+  m_Rigidbody2D: {fileID: 8507404518643752713}
+  m_Collider2D: {fileID: 7745689166083072545}
 --- !u!61 &7745689166083072545
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,6 +135,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6, y: 8}
   m_EdgeRadius: 0
+--- !u!50 &8507404518643752713
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170428418255882345}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4076819775354989257
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,9 +191,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 8, y: 10}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -5, y: 3}
+  m_SizeDelta: {x: 100, y: 12}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1365601857052844818
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -234,7 +258,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -262,7 +286,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 4.1591496, z: 0, w: 3.9280825}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

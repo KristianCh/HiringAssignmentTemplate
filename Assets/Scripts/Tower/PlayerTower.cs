@@ -6,6 +6,8 @@ public class PlayerTower : Tower
 {
     public Item ItemPrefab;
     public static PlayerTower Instance;
+    public Vector3 TargetPosition = new Vector3(-4, 0, 0);
+
 
     // Start is called before the first frame update
     public override void Start()
@@ -16,26 +18,42 @@ public class PlayerTower : Tower
         }
         Instance = this;
 
-        if (Random.Range(0f, 1f) > 0.5f)
-        {
-            Item newItem = Instantiate(ItemPrefab, Vector3.zero, Quaternion.identity);
-            RoomList[1].AddRoomEntity(newItem);
-
-            newItem.SetValue(Random.Range(3, 6));
-        }
+        RoomList[0].TargetPosition = Vector3.zero;
     }
 
-    public override void RemoveRoom(int level)
+    public override void Update()
+    {
+        // Move to target position
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, TargetPosition, Time.deltaTime * 10);
+    }
+
+    // Do nothing
+    public override void RemoveRoom(Room room)
     {
         return;
     }
-
+    
+    // Creates a room on top with a chance to generate an item
     public void AddRoomOnTop() 
     {
-        Room newRoom = Instantiate(RoomPrefab, new Vector3(0, RoomList.Count * 2.4f, 0), Quaternion.identity);
-        newRoom.transform.SetParent(this.transform, false);
+        Room newRoom = Instantiate(RoomPrefab, new Vector3(0, 2.4f, 0), Quaternion.identity);
+        newRoom.transform.SetParent(RoomList[RoomList.Count - 1].transform, false);
         newRoom.ParentTower = this;
         newRoom.RemoveOnEmpty = false;
         RoomList.Add(newRoom);
+
+        GenerateItem(0.2f);
+    }
+
+    // Generates an item in the room with probability p
+    public void GenerateItem(float p)
+    {
+        if (Random.Range(0.0f, 1.0f) < p)
+        {
+            Item newItem = Instantiate(ItemPrefab, Vector3.zero, Quaternion.identity);
+            RoomList[RoomList.Count - 1].AddRoomEntity(newItem);
+
+            newItem.SetValue(Random.Range(Player.Instance.Value / 10, Player.Instance.Value / 5));
+        }
     }
 }
