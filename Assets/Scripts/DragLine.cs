@@ -53,7 +53,7 @@ public class DragLine : MonoBehaviour
             }
         }
         // While mouse button is down
-        else if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButton(0) && StartedOnPlayer)
         {
             // Update end position
             EndPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + CameraOffset;

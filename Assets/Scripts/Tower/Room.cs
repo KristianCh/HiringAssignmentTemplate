@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    // Position to move to
     public Vector3 TargetPosition = new Vector3(0, 2.4f, 0);
     // List of room entities in room
     public List<RoomEntity> RoomEntities = new List<RoomEntity>();
@@ -22,6 +23,9 @@ public class Room : MonoBehaviour
     // Values of previous enemy and all enemies together
     private static int LastLevelMaxValue = 8;
     private static int TotalEnemyValues = 8;
+
+    private float EnemySpawnOffset = 1.5f;
+    private float ValueLevelMult = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +49,7 @@ public class Room : MonoBehaviour
         if (RoomEntities.Count > 0)
         {
             // Begin attack movement to first room entity
-            Player.Instance.BeginAttackMovement(RoomEntities[0]);
+            Player.Instance.BeginMovement(RoomEntities[0], -1);
             Player.onFinishMovement += OnAttackMovementComplete;
         }
         else if (Player.Instance != null)
@@ -79,7 +83,7 @@ public class Room : MonoBehaviour
         else
         {
             // Begin attack on next entity
-            Player.Instance.BeginAttackMovement(RoomEntities[0]);
+            Player.Instance.BeginMovement(RoomEntities[0], -1);
             Player.onFinishMovement += OnAttackMovementComplete;
         }
     }
@@ -124,13 +128,17 @@ public class Room : MonoBehaviour
         for (int i = enemiesToSpawn - 1; i >= 0; i--)
         {
             // Spawn prefab and set up position
-            Enemy newEnemy = Instantiate(EnemyPrefab, new Vector3(1.5f - i * 1.5f, 0, 0), Quaternion.identity);
+            Enemy newEnemy = Instantiate(EnemyPrefab, new Vector3(EnemySpawnOffset - i * EnemySpawnOffset, 0, 0), Quaternion.identity);
             newEnemy.ParentRoom = this;
             newEnemy.transform.SetParent(this.transform, false);
             AddRoomEntity(newEnemy);
 
             // Calculate enemy value
-            int value = (int)Mathf.Min(TotalEnemyValues, Mathf.Round(LastLevelMaxValue * 2f + Random.Range(-LastLevelMaxValue / 2f, 0)));
+            int value = (int)Mathf.Min(
+                    TotalEnemyValues, 
+                    Mathf.Round(LastLevelMaxValue * ValueLevelMult + Random.Range(-LastLevelMaxValue / ValueLevelMult, 0))
+                );
+            // Set values
             newEnemy.SetValue(value);
             TotalEnemyValues += value;
             if (value > highestLevelValue) 
@@ -138,6 +146,7 @@ public class Room : MonoBehaviour
                 highestLevelValue = value; 
             }
         }
+        // Save max value from this room
         LastLevelMaxValue = highestLevelValue;
     }
 }

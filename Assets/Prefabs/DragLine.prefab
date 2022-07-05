@@ -91,27 +91,45 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 1.0800551
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.015724182
-        value: 0.45333317
-        inSlope: 1.0131987
-        outSlope: 1.0131987
+        time: 0
+        value: 0.25
+        inSlope: 9.463243
+        outSlope: 9.463243
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.24600564
+        outWeight: 1
       - serializedVersion: 3
-        time: 1
-        value: 0.8186665
+        time: 0.3
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.7
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.25
+        inSlope: -9.615217
+        outSlope: -9.615217
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.97484326
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2

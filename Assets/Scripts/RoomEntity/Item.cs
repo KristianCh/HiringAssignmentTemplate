@@ -4,25 +4,10 @@ using UnityEngine;
 
 public class Item : RoomEntity
 {
+    // Particles prefab
     public GameObject PickupParticlesPrefab;
-    // Start is called before the first frame update
-    public override void Start()
-    {
-        base.Start();
-        Type = RoomEntityType.Item;
-    }
 
-    public override void Update()
-    {
-        base.Update();
-        // Destroy game object if marked as dead
-        if (IsDead)
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    // Just add value to other and destroy item
+    // Add value to other and destroy item
     public override bool CompareRoomEntity(RoomEntity other)
     {
         other.ModifyValue(this.Value);
@@ -30,10 +15,16 @@ public class Item : RoomEntity
         return true;
     }
 
+    // Create particles on destroy
     public override void DestroyEntity()
     {
         base.DestroyEntity();
-        Instantiate(PickupParticlesPrefab, transform.position, Quaternion.identity);   
+        Instantiate(PickupParticlesPrefab, transform.position, Quaternion.identity);
     }
-    
+
+    // remove position requirement to be destroyed
+    public override bool CanBeDestroyed()
+    {
+        return IsDead;
+    }
 }

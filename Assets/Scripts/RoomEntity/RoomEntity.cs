@@ -3,22 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-// Entity type
-public enum RoomEntityType
-{
-    Player,
-    Enemy,
-    Item
-}
-
 public class RoomEntity : MonoBehaviour
 {
     // Value of entity
     public int Value;
-    // Marker to delete next update
+    // Marks entity as dead
     public bool IsDead = false;
-    // Entity Type
-    public RoomEntityType Type;
     // Value text component
     public TMP_Text ValueText;
     // Sprite
@@ -29,6 +19,10 @@ public class RoomEntity : MonoBehaviour
     public Room ParentRoom;
     // Rigidbody
     public Rigidbody2D m_Rigidbody2D;
+
+    // Values
+    protected float DeathForceMult = 500;
+    protected float OutOfVisionHeight = -10;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -44,7 +38,11 @@ public class RoomEntity : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
-
+        // Destroy game object if can be destroyed
+        if (CanBeDestroyed())
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Set up sprite from scriptable object
@@ -110,5 +108,20 @@ public class RoomEntity : MonoBehaviour
             ParentRoom.RemoveRoomEntity(this);
         }
         transform.SetParent(null);
+    }
+
+    // If room entity can be destroyed
+    public virtual bool CanBeDestroyed()
+    {
+        return IsDead && transform.position.y < OutOfVisionHeight; ;
+    }
+
+    // Enable dynamic rigidbody and apply force to it
+    protected void ApplyDeathForce(float dirScale = 1f)
+    {
+        m_Rigidbody2D.isKinematic = false;
+        float angle = Random.Range(0.5f, 0.9f);
+        Vector3 force = new Vector3(Mathf.Cos(angle) * dirScale, Mathf.Sin(angle), 0) * DeathForceMult;
+        m_Rigidbody2D.AddForceAtPosition(new Vector2(force.x, force.y), new Vector2(transform.position.x + Random.Range(-1f, 1f), transform.position.y + Random.Range(-1f, 1f)));
     }
 }

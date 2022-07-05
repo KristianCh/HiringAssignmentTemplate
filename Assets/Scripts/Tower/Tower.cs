@@ -12,6 +12,9 @@ public class Tower : MonoBehaviour
     // Room prefab
     public Room RoomPrefab;
 
+    // Height og 1 room
+    protected float RoomHeight = 2.4f;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -33,7 +36,7 @@ public class Tower : MonoBehaviour
         PlayerTower.Instance.AddRoomOnTop();
 
         // Offset to move rooms by
-        Vector3 offset = new Vector3(0, 2.4f, 0);
+        Vector3 offset = new Vector3(0, RoomHeight, 0);
 
         // Move rooms above down
         int index = RoomList.IndexOf(room);
@@ -63,7 +66,7 @@ public class Tower : MonoBehaviour
      */
     public void GenerateTower()
     {
-        // Generate array 0 to Levels
+        // Generate indices array from 0 to Levels and initialize room list
         int[] indices = new int[Levels];
         for (int i = 0; i < Levels; i++)
         {
@@ -71,7 +74,7 @@ public class Tower : MonoBehaviour
             indices[i] = i;
         }
             
-        // Shuffle array
+        // Shuffle indices array
         for (int i = 0; i < Levels; i++)
         {
             int rnd = Random.Range(0, Levels);
@@ -84,14 +87,16 @@ public class Tower : MonoBehaviour
         for (int j = 0; j < Levels; j++)
         {
             int i = indices[j];
-            Room newRoom = Instantiate(RoomPrefab, new Vector3(0, 2.4f, 0), Quaternion.identity);
+            Room newRoom = Instantiate(RoomPrefab, new Vector3(0, RoomHeight, 0), Quaternion.identity);
             newRoom.transform.SetParent(this.transform, false);
             newRoom.ParentTower = this;
             RoomList[i] = newRoom;
 
+            // Populate room with enemies
             newRoom.PopulateRoom();
         }
 
+        //
         RoomList[0].TargetPosition = Vector3.zero;
         RoomList[0].transform.localPosition = Vector3.zero;
         // Set parent rooms for each above first

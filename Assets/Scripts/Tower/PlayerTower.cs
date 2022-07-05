@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class PlayerTower : Tower
 {
+    // Item prefab
     public Item ItemPrefab;
+    // Instance of player tower
     public static PlayerTower Instance;
+    // Position to move to
     public Vector3 TargetPosition = new Vector3(-4, 0, 0);
+
+    private int ItemSpawnDivisorLower = 10;
+    private int ItemSpawnDivisorHigher = 5;
 
 
     // Start is called before the first frame update
     public override void Start()
     {
+        base.Start();
+        // Set up instance
         if (Instance != null)
         {
             Destroy(Instance.gameObject);
@@ -23,6 +31,7 @@ public class PlayerTower : Tower
 
     public override void Update()
     {
+        base.Update();  
         // Move to target position
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, TargetPosition, Time.deltaTime * 10);
     }
@@ -36,7 +45,7 @@ public class PlayerTower : Tower
     // Creates a room on top with a chance to generate an item
     public void AddRoomOnTop() 
     {
-        Room newRoom = Instantiate(RoomPrefab, new Vector3(0, 2.4f, 0), Quaternion.identity);
+        Room newRoom = Instantiate(RoomPrefab, new Vector3(0, RoomHeight, 0), Quaternion.identity);
         newRoom.transform.SetParent(RoomList[RoomList.Count - 1].transform, false);
         newRoom.ParentTower = this;
         newRoom.RemoveOnEmpty = false;
@@ -45,7 +54,7 @@ public class PlayerTower : Tower
         GenerateItem(0.2f);
     }
 
-    // Generates an item in the room with probability p
+    // Generates an item in the room with probability p (between 0 - 1)
     public void GenerateItem(float p)
     {
         if (Random.Range(0.0f, 1.0f) < p)
@@ -53,7 +62,7 @@ public class PlayerTower : Tower
             Item newItem = Instantiate(ItemPrefab, Vector3.zero, Quaternion.identity);
             RoomList[RoomList.Count - 1].AddRoomEntity(newItem);
 
-            newItem.SetValue(Random.Range(Player.Instance.Value / 10, Player.Instance.Value / 5));
+            newItem.SetValue(Random.Range(Player.Instance.Value / ItemSpawnDivisorLower, Player.Instance.Value / ItemSpawnDivisorHigher));
         }
     }
 }

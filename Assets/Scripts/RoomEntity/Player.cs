@@ -5,13 +5,12 @@ using UnityEngine;
 // Class controlling movement between two point
 public class MovementAnimator
 {
+    // Animation parameters
     public Player m_Player;
     public float Speed;
     public float T;
-
     public Vector3 StartPosition;
     public Vector3 EndPosition;
-    private Vector3 Heading => (EndPosition - StartPosition).normalized;
 
     // Initialize values
     public MovementAnimator(Player player, Vector3 startPosition, Vector3 endPosition, float speed = 1)
@@ -25,7 +24,7 @@ public class MovementAnimator
 
     // Interpolate between positions and add an arc
     // Returns position vector, z value is -1 if finished
-    public Vector3 Update(float deltaTime)
+    public Vector3 UpdateAnimationPosition(float deltaTime)
     {
         T = Mathf.Min(1, T + Speed * deltaTime);
 
@@ -48,7 +47,11 @@ public class Player : RoomEntity
     public delegate void OnFinishMovement();
     public static OnFinishMovement onFinishMovement;
 
+    // Animator instance
     private MovementAnimator m_MovementAnimator;
+
+    // Offset to keep players feet on the floor
+    private float FloorOffset = -0.4f;
 
     // Start is called before the first frame update
     public override void Start()
@@ -61,23 +64,15 @@ public class Player : RoomEntity
             Destroy(Instance.gameObject);
         }
         Instance = this;
-
-        Type = RoomEntityType.Player;
     }
 
     public override void Update()
     {
         base.Update();
-        // Destroy game object if marked as dead and out of view
-        if (IsDead && transform.position.y < -10)
-        {
-            Destroy(gameObject);
-        }
-
         // If animator exists, update movement
         if (m_MovementAnimator != null)
         {
-            Vector3 pos = m_MovementAnimator.Update(Time.deltaTime);
+            Vector3 pos = m_MovementAnimator.UpdateAnimationPosition(Time.deltaTime);
             if (pos.z == -1)
             {
                 // Movement finished, enable raycast collider, remove animator and invoke on finish movement functions
@@ -85,31 +80,26 @@ public class Player : RoomEntity
                 m_MovementAnimator = null;
                 onFinishMovement?.Invoke();
 
-                // Set position
+                // Set z to 0
                 pos.z = 0;
-                transform.position = pos;
             }
-            else
-            {
-                transform.position = pos;
-            }
+            // Set position
+            transform.position = pos;
         }
     }
 
-    // Begins movement toward enemy
-    public void BeginAttackMovement(RoomEntity roomEntity)
+    // Begins movement to position of target
+    public void BeginMovement(MonoBehaviour target, float xOffset = 0)
     {
         m_Collider2D.enabled = false;
-        m_MovementAnimator = new MovementAnimator(this, transform.position, roomEntity.transform.position + new Vector3(-1, -0.4f, 0));
-    }
+        m_MovementAnimator = new MovementAnimator(this, transform.position, target.transform.position + new Vector3(xOffset, FloorOffset, 0));
+    } 
 
     // Move player to room
     public void MoveToRoom(Room room)
     {
-        m_Collider2D.enabled = false;
         ParentRoom = room;
-        Vector3 targetPosition = room.transform.position;
-        m_MovementAnimator = new MovementAnimator(this, transform.position, targetPosition + new Vector3(0, -0.4f, 0));
+        BeginMovement(room);
     }
 
     /*
@@ -119,11 +109,8 @@ public class Player : RoomEntity
     public override void DestroyEntity()
     {
         Instance = null;
-        base.DestroyEntity();
-        m_Rigidbody2D.isKinematic = false;
         m_Collider2D.enabled = false;
-        float angle = Random.Range(0.5f, 0.9f);
-        Vector3 force = new Vector3(-Mathf.Cos(angle), Mathf.Sin(angle), 0) * 500;
-        m_Rigidbody2D.AddForceAtPosition(new Vector2(force.x, force.y), new Vector2(transform.position.x + Random.Range(-1f, 1f), transform.position.y + Random.Range(-1f, 1f)));
+        base.DestroyEntity();
+        ApplyDeathForce(-1f);
     }
 }
