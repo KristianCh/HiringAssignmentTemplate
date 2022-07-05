@@ -58,6 +58,7 @@ public class Player : RoomEntity
     // Begins movement to position of target
     public void BeginMovement(MonoBehaviour target, float xOffset = 0)
     {
+        SoundManager.Instance.PlayJumpAudio();
         m_Collider2D.enabled = false;
         m_MovementAnimator = new MovementAnimator(this, transform.position, target.transform.position + new Vector3(xOffset, FloorOffset, 0));
     } 

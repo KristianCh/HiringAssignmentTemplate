@@ -45,6 +45,7 @@ public class PlayerTower : Tower
     // Creates a room on top with a chance to generate an item
     public void AddRoomOnTop() 
     {
+        if (RoomList.Count >= GameManager.Instance.MaxTowerHeight) return;
         Room newRoom = Instantiate(RoomPrefab, new Vector3(0, RoomHeight, 0), Quaternion.identity);
         newRoom.transform.SetParent(RoomList[RoomList.Count - 1].transform, false);
         newRoom.ParentTower = this;

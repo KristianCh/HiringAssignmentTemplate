@@ -21,6 +21,7 @@ public class Room : MonoBehaviour
     public Enemy EnemyPrefab;
 
     // Values of previous enemy and all enemies together
+    [SerializeField]
     private static int LastLevelMaxValue = 8;
     private static int TotalEnemyValues = 8;
 
@@ -30,7 +31,7 @@ public class Room : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame

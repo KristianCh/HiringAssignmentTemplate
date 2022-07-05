@@ -61,6 +61,7 @@ public class RoomEntity : MonoBehaviour
      */
     public virtual bool CompareRoomEntity(RoomEntity player)
     {
+        SoundManager.Instance.PlayFightAudio();
         if (player.Value >= this.Value)
         {
             player.ModifyValue(this.Value);

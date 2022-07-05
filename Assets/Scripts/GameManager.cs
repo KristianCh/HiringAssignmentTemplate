@@ -5,9 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public int TowersToSpawn = 3;
+    public int TowersGenerated = 0;
+    public int TotalLevels = 0;
     public int MinTowerHeight = 4;
-    private int DestroyedTowers = 0;
+    public int MaxTowerHeight = 10;
+    public int DestroyedTowers = 0;
     public Tower TowerPrefab;
+    public GameGUI Gui;
 
     public static GameManager Instance;
 
@@ -22,20 +26,26 @@ public class GameManager : MonoBehaviour
             Destroy(Instance.gameObject);
         }
         Instance = this;
-        Room.ResetLevelValues();
     }
 
-    public void GenerateTowers()
+    public void Init()
     {
-        int TotalLevels = 0;
-        for (int i = 0; i < TowersToSpawn; i++)
+        Room.ResetLevelValues();
+        Gui.SetTowersDestroyedText("Towers Destroyed: " + DestroyedTowers.ToString() + "/" + TowersToSpawn.ToString());
+        for (int i = 0; i < Mathf.Min(2, TowersToSpawn); i++)
         {
-            Tower newTower = Instantiate(TowerPrefab, new Vector3(4 + i * 8, 0, 0), Quaternion.identity);
-            newTower.Levels = Random.Range(MinTowerHeight, TotalLevels + MinTowerHeight + 1);
-            newTower.transform.SetParent(transform, false);
-            TotalLevels += newTower.Levels;
-            newTower.GenerateTower();
+            GenerateTower();
         }
+    }
+
+    public void GenerateTower()
+    {
+        Tower newTower = Instantiate(TowerPrefab, new Vector3(4 + TowersGenerated * 8, 0, 0), Quaternion.identity);
+        newTower.Levels = Random.Range(MinTowerHeight, Mathf.Min(TotalLevels + MinTowerHeight, MaxTowerHeight) + 1);
+        newTower.transform.SetParent(transform, false);
+        TotalLevels += newTower.Levels;
+        newTower.GenerateTower();
+        TowersGenerated++;
     }
 
     // Update is called once per frame
@@ -61,7 +71,14 @@ public class GameManager : MonoBehaviour
     {
         PlayerTower.Instance.TargetPosition = tower.transform.position;
         DestroyedTowers++;
-        if (DestroyedTowers == TowersToSpawn)
+        Gui.SetTowersDestroyedText("Towers Destroyed: " + DestroyedTowers.ToString() + "/" + TowersToSpawn.ToString());
+
+        if (TowersGenerated < TowersToSpawn)
+        {
+            GenerateTower();
+        }
+
+        else if (DestroyedTowers == TowersToSpawn)
         {
             FinishGame(true);
         }

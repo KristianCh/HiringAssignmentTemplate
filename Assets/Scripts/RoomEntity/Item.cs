@@ -10,6 +10,7 @@ public class Item : RoomEntity
     // Add value to other and destroy item
     public override bool CompareRoomEntity(RoomEntity other)
     {
+        SoundManager.Instance.PlayPickupAudio();
         other.ModifyValue(this.Value);
         this.DestroyEntity();
         return true;
