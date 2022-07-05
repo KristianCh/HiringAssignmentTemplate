@@ -7,9 +7,11 @@ public class Enemy : RoomEntity
     public override void Start()
     {
         base.Start();
-        if (SpriteData != null && SpriteData.EnemySprites.Count > 0)
+        // Set random sprite from selection
+        if (AssetManager.Instance.SpriteData != null && AssetManager.Instance.SpriteData.EnemySprites.Count > 0)
         {
-            m_SpriteRenderer.sprite = SpriteData.EnemySprites[Random.Range(0, SpriteData.EnemySprites.Count)];
+            m_SpriteRenderer.sprite =
+                AssetManager.Instance.SpriteData.EnemySprites[Random.Range(0, AssetManager.Instance.SpriteData.EnemySprites.Count)];
         }
     }
 

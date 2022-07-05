@@ -19,13 +19,13 @@ public class PlayerTower : Tower
     public override void Start()
     {
         base.Start();
-        // Set up instance
         if (Instance != null)
         {
             Destroy(Instance.gameObject);
         }
         Instance = this;
 
+        // Set initial target position
         RoomList[0].TargetPosition = Vector3.zero;
     }
 
@@ -45,7 +45,7 @@ public class PlayerTower : Tower
     // Creates a room on top with a chance to generate an item
     public void AddRoomOnTop() 
     {
-        if (RoomList.Count >= GameManager.Instance.MaxTowerHeight) return;
+        if (RoomList.Count >= LevelManager.Instance.MaxTowerHeight) return;
         Room newRoom = Instantiate(RoomPrefab, new Vector3(0, RoomHeight, 0), Quaternion.identity);
         newRoom.transform.SetParent(RoomList[RoomList.Count - 1].transform, false);
         newRoom.ParentTower = this;

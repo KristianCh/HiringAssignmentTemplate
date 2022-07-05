@@ -104,10 +104,10 @@ MonoBehaviour:
   IsDead: 0
   ValueText: {fileID: 8417872769131248198}
   m_SpriteRenderer: {fileID: 6855605252102056465}
-  SpriteData: {fileID: 11400000, guid: 6141fe7ee18dfeb4c912952696a38135, type: 2}
   ParentRoom: {fileID: 0}
   m_Rigidbody2D: {fileID: 8507404518643752713}
   m_Collider2D: {fileID: 7745689166083072545}
+  PlayerData: {fileID: 11400000, guid: a6de5ffa72ddba444a8a307ad89f5308, type: 2}
 --- !u!61 &7745689166083072545
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 7316512504415852787}
   - component: {fileID: 1365601857052844818}
   - component: {fileID: 8417872769131248198}
+  - component: {fileID: 49533213214535303}
   m_Layer: 6
   m_Name: ValueText
   m_TagString: Untagged
@@ -291,6 +292,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &49533213214535303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4076819775354989257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fce91521965ed14eb52eeedaf3d4586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Text: {fileID: 8417872769131248198}
 --- !u!1 &7702537216948490816
 GameObject:
   m_ObjectHideFlags: 0

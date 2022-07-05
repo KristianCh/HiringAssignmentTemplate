@@ -15,14 +15,14 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Follow player if exists, else follow player tower
+        // Follow player if exists
         if (Player.Instance != null)
         {
             transform.position = Vector3.Lerp(transform.position, Player.Instance.transform.position + PlayerOffset + BaseOffset, Time.deltaTime * FollowSpeed);
         }
-        else if (PlayerTower.Instance != null)
+        else
         {
-            transform.position = Vector3.Lerp(transform.position, PlayerTower.Instance.transform.position + BaseOffset, Time.deltaTime * FollowSpeed);
+            transform.position = Vector3.Lerp(transform.position, BaseOffset, Time.deltaTime * FollowSpeed);
         }
     }
 }

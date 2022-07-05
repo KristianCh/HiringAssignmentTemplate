@@ -10,9 +10,11 @@ public class Item : RoomEntity
     public override void Start()
     {
         base.Start();
-        if (SpriteData != null && SpriteData.ItemSprites.Count > 0)
+        // Set random sprite from selection
+        if (AssetManager.Instance.SpriteData != null && AssetManager.Instance.SpriteData.ItemSprites.Count > 0)
         {
-            m_SpriteRenderer.sprite = SpriteData.ItemSprites[Random.Range(0, SpriteData.ItemSprites.Count)];
+            m_SpriteRenderer.sprite =
+                AssetManager.Instance.SpriteData.ItemSprites[Random.Range(0, AssetManager.Instance.SpriteData.ItemSprites.Count)];
         }
     }
 

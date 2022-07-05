@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public GameManager GameLevelPrefab;
+    // Preset level prefab
+    public LevelManager GameLevelPrefab;
 
+    // On start game button click
     public void StartGame()
     {
-        SoundManager.Instance.PlayButtonAudio();
-        GameManager game = Instantiate(GameLevelPrefab, Vector3.zero, Quaternion.identity);
+        // Instantiate level and destroy main menu
+        LevelManager game = Instantiate(GameLevelPrefab, Vector3.zero, Quaternion.identity);
         game.Init();
         Destroy(gameObject);
     }
 
+    // On quit game button click
     public void QuitGame()
     {
+        // Play sound, close app
         SoundManager.Instance.PlayButtonAudio();
         Application.Quit();
     }

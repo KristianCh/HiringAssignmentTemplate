@@ -14,8 +14,6 @@ public class Room : MonoBehaviour
     public Tower ParentTower;
     // Sprite
     public SpriteRenderer m_SpriteRenderer;
-    // Scriptable object with data
-    public SpriteDataScriptableObject SpriteData;
     // Level of room
     /*
      * Remove room when it is empty
@@ -37,9 +35,11 @@ public class Room : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (SpriteData != null && SpriteData.RoomSprites.Count > 0)
+        // Set random sprite from selection
+        if (AssetManager.Instance.SpriteData != null && AssetManager.Instance.SpriteData.RoomSprites.Count > 0)
         {
-            m_SpriteRenderer.sprite = SpriteData.RoomSprites[Random.Range(0, SpriteData.RoomSprites.Count)];
+            m_SpriteRenderer.sprite =
+                AssetManager.Instance.SpriteData.RoomSprites[Random.Range(0, AssetManager.Instance.SpriteData.RoomSprites.Count)];
         }
     }
 

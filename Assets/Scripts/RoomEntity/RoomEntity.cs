@@ -13,8 +13,6 @@ public class RoomEntity : MonoBehaviour
     public TMP_Text ValueText;
     // Sprite
     public SpriteRenderer m_SpriteRenderer;
-    // Scriptable object with data
-    public SpriteDataScriptableObject SpriteData;
     // Room in which this entity is
     public Room ParentRoom;
     // Rigidbody

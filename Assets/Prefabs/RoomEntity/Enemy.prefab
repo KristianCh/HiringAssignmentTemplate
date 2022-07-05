@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 3847206725286211586}
   - component: {fileID: 928703008449875980}
   - component: {fileID: 3259924670822194226}
+  - component: {fileID: 5135197678172632603}
   m_Layer: 5
   m_Name: ValueText
   m_TagString: Untagged
@@ -237,6 +238,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5135197678172632603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4266365930774311270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fce91521965ed14eb52eeedaf3d4586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Text: {fileID: 3259924670822194226}
 --- !u!1 &7328458023186209162
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +354,6 @@ MonoBehaviour:
   IsDead: 0
   ValueText: {fileID: 3259924670822194226}
   m_SpriteRenderer: {fileID: 330623580735986985}
-  SpriteData: {fileID: 11400000, guid: 6141fe7ee18dfeb4c912952696a38135, type: 2}
   ParentRoom: {fileID: 0}
   m_Rigidbody2D: {fileID: 822093275238088573}
 --- !u!50 &822093275238088573

@@ -54,6 +54,7 @@ MonoBehaviour:
     type: 3}
   ItemPrefab: {fileID: 6558147773283103830, guid: 41999929dc0d6a545af514b3d5de91d9,
     type: 3}
+  TargetPosition: {x: -4, y: 0, z: 0}
 --- !u!1001 &586772586876353743
 PrefabInstance:
   m_ObjectHideFlags: 0

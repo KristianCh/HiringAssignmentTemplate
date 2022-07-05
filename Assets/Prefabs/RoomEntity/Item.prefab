@@ -102,7 +102,6 @@ MonoBehaviour:
   IsDead: 0
   ValueText: {fileID: 2923476749061263212}
   m_SpriteRenderer: {fileID: 1513703880091668395}
-  SpriteData: {fileID: 11400000, guid: 6141fe7ee18dfeb4c912952696a38135, type: 2}
   ParentRoom: {fileID: 0}
   m_Rigidbody2D: {fileID: 0}
   PickupParticlesPrefab: {fileID: 4804491321167965938, guid: 61adcbbe9746151449e30140fa1ef9a7,
@@ -219,6 +218,7 @@ GameObject:
   - component: {fileID: 870206628049805148}
   - component: {fileID: 8699452805847679174}
   - component: {fileID: 2923476749061263212}
+  - component: {fileID: 4846825416363189275}
   m_Layer: 5
   m_Name: ValueText
   m_TagString: Untagged
@@ -344,3 +344,16 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4846825416363189275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8393546787994862817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fce91521965ed14eb52eeedaf3d4586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Text: {fileID: 2923476749061263212}

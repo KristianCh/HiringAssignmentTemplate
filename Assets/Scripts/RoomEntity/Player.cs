@@ -12,18 +12,19 @@ public class Player : RoomEntity
     // Invoked on finishing of movement
     public delegate void OnFinishMovementCallback();
     public static OnFinishMovementCallback onFinishMovementCallback;
+    public PlayerScriptableObject PlayerData;
 
     // Animator instance
     private MovementAnimator m_MovementAnimator;
 
     // Offset to keep players feet on the floor
     private float FloorOffset = -0.4f;
+    private float JumpSpeed = 1f;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
-
         // Set up player instance
         if (Instance != null)
         {
@@ -31,9 +32,21 @@ public class Player : RoomEntity
         }
         Instance = this;
 
-        if (SpriteData != null && SpriteData.PlayerSprites.Count > 0)
+        // Set random sprite from selection
+        if (AssetManager.Instance.SpriteData != null && AssetManager.Instance.SpriteData.PlayerSprites.Count > 0)
         {
-            m_SpriteRenderer.sprite = SpriteData.PlayerSprites[Random.Range(0, SpriteData.PlayerSprites.Count)];
+            m_SpriteRenderer.sprite =
+                AssetManager.Instance.SpriteData.PlayerSprites[Random.Range(0, AssetManager.Instance.SpriteData.PlayerSprites.Count)];
+        }
+        // Set up values from scriptable object
+        if (PlayerData != null)
+        {
+            JumpSpeed = PlayerData.JumpSpeed;
+            FloorOffset = PlayerData.FloorOffset;
+            if (PlayerData.OverrideSprite)
+            {
+                m_SpriteRenderer.sprite = PlayerData.PlayerSprite;
+            }
         }
     }
 
@@ -65,7 +78,7 @@ public class Player : RoomEntity
     {
         SoundManager.Instance.PlayJumpAudio();
         m_Collider2D.enabled = false;
-        m_MovementAnimator = new MovementAnimator(this, transform.position, target.transform.position + new Vector3(xOffset, FloorOffset, 0));
+        m_MovementAnimator = new MovementAnimator(this, transform.position, target.transform.position + new Vector3(xOffset, FloorOffset, 0.5f), JumpSpeed);
     } 
 
     // Move player to room
@@ -85,6 +98,6 @@ public class Player : RoomEntity
         m_Collider2D.enabled = false;
         base.DestroyEntity();
         ApplyDeathForce(-1f);
-        GameManager.Instance.OnPlayerDeath();
+        LevelManager.Instance.OnPlayerDeath();
     }
 }

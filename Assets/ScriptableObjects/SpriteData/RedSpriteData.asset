@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d224c50c45237d48ae22f6e4437cac0, type: 3}
+  m_Name: RedSpriteData
+  m_EditorClassIdentifier: 
+  EnemySprites:
+  - {fileID: 21300000, guid: 813b7c7ef9aa146f9b4d2333c590c88c, type: 3}
+  - {fileID: 21300000, guid: c3c72287193214996af4f29c39ba21ef, type: 3}
+  PlayerSprites:
+  - {fileID: 21300000, guid: 1ebe9d3ac5ce74f3589c006da297bdc7, type: 3}
+  ItemSprites:
+  - {fileID: 21300000, guid: a22e4b6c4fe9242aea74ea03dc066589, type: 3}
+  - {fileID: 21300000, guid: 1346376655e6040a7882ec332ba28935, type: 3}
+  RoomSprites:
+  - {fileID: 21300000, guid: 92e63bc1a9431d148bb828c979c6ad6a, type: 3}
+  ButtonSprite: {fileID: 21300000, guid: 681db73f19fb24efe843aad713eccb43, type: 3}
+  FloorSprite: {fileID: 21300000, guid: d11220f556bb1497684c774733cb6a8c, type: 3}
+  Font: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}

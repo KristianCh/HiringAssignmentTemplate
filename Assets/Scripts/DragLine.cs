@@ -57,6 +57,7 @@ public class DragLine : MonoBehaviour
         {
             // Update end position
             EndPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + CameraOffset;
+            m_LineRenderer.SetPosition(0, Player.Instance.transform.position + PlayerOffset);
             m_LineRenderer.SetPosition(1, EndPosition);
         }
         // On mouse button up
