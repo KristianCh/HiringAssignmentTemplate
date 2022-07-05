@@ -30,6 +30,11 @@ public class Player : RoomEntity
             Destroy(Instance.gameObject);
         }
         Instance = this;
+
+        if (SpriteData != null && SpriteData.PlayerSprites.Count > 0)
+        {
+            m_SpriteRenderer.sprite = SpriteData.PlayerSprites[Random.Range(0, SpriteData.PlayerSprites.Count)];
+        }
     }
 
     public override void Update()

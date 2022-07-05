@@ -6,10 +6,16 @@ public class Room : MonoBehaviour
 {
     // Position to move to
     public Vector3 TargetPosition = new Vector3(0, 2.4f, 0);
+    // Offset to keep enemies feet on the floor
+    private float FloorOffset = -0.3f;
     // List of room entities in room
     public List<RoomEntity> RoomEntities = new List<RoomEntity>();
     // Tower containing this room
     public Tower ParentTower;
+    // Sprite
+    public SpriteRenderer m_SpriteRenderer;
+    // Scriptable object with data
+    public SpriteDataScriptableObject SpriteData;
     // Level of room
     /*
      * Remove room when it is empty
@@ -31,7 +37,10 @@ public class Room : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (SpriteData != null && SpriteData.RoomSprites.Count > 0)
+        {
+            m_SpriteRenderer.sprite = SpriteData.RoomSprites[Random.Range(0, SpriteData.RoomSprites.Count)];
+        }
     }
 
     // Update is called once per frame
@@ -135,7 +144,7 @@ public class Room : MonoBehaviour
         for (int i = enemiesToSpawn - 1; i >= 0; i--)
         {
             // Spawn prefab and set up position
-            Enemy newEnemy = Instantiate(EnemyPrefab, new Vector3(EnemySpawnOffset - i * EnemySpawnOffset, 0, 0), Quaternion.identity);
+            Enemy newEnemy = Instantiate(EnemyPrefab, new Vector3(EnemySpawnOffset - i * EnemySpawnOffset, FloorOffset, 1), Quaternion.identity);
             newEnemy.ParentRoom = this;
             newEnemy.transform.SetParent(this.transform, false);
             AddRoomEntity(newEnemy);

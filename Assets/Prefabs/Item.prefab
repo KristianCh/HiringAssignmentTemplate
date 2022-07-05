@@ -100,10 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Value: 5
   IsDead: 0
-  Type: 2
   ValueText: {fileID: 2923476749061263212}
   m_SpriteRenderer: {fileID: 1513703880091668395}
-  DataValues: {fileID: 0}
+  SpriteData: {fileID: 11400000, guid: 6141fe7ee18dfeb4c912952696a38135, type: 2}
   ParentRoom: {fileID: 0}
   m_Rigidbody2D: {fileID: 0}
   PickupParticlesPrefab: {fileID: 4804491321167965938, guid: 61adcbbe9746151449e30140fa1ef9a7,

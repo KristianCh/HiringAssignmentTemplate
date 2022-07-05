@@ -130,9 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd41ac9336748a4fb80aec082afaee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetPosition: {x: 0, y: 2.4, z: 0}
   RoomEntities: []
   ParentTower: {fileID: 0}
-  Level: 1
+  m_SpriteRenderer: {fileID: 6650668815964015067}
+  SpriteData: {fileID: 11400000, guid: 6141fe7ee18dfeb4c912952696a38135, type: 2}
   RemoveOnEmpty: 1
   EnemyPrefab: {fileID: 706977191741871013, guid: bf7817be5a6d9b04cb86d65ef8021467,
     type: 3}

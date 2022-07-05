@@ -338,10 +338,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Value: 10
   IsDead: 0
-  Type: 1
   ValueText: {fileID: 3259924670822194226}
   m_SpriteRenderer: {fileID: 330623580735986985}
-  DataValues: {fileID: 11400000, guid: 58f75e7ed6698a24882cca3e37824c16, type: 2}
+  SpriteData: {fileID: 11400000, guid: 6141fe7ee18dfeb4c912952696a38135, type: 2}
   ParentRoom: {fileID: 0}
   m_Rigidbody2D: {fileID: 822093275238088573}
 --- !u!50 &822093275238088573

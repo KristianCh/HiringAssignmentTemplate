@@ -14,7 +14,7 @@ public class RoomEntity : MonoBehaviour
     // Sprite
     public SpriteRenderer m_SpriteRenderer;
     // Scriptable object with data
-    public RoomEntityScriptableObject DataValues;
+    public SpriteDataScriptableObject SpriteData;
     // Room in which this entity is
     public Room ParentRoom;
     // Rigidbody
@@ -43,13 +43,6 @@ public class RoomEntity : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    // Set up sprite from scriptable object
-    public void SetupDataValues(RoomEntityScriptableObject dataValues)
-    {
-        DataValues = dataValues;
-        m_SpriteRenderer.sprite = dataValues.m_Sprite;
     }
 
     /*

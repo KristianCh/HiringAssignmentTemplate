@@ -60,7 +60,7 @@ public class PlayerTower : Tower
     {
         if (Random.Range(0.0f, 1.0f) < p)
         {
-            Item newItem = Instantiate(ItemPrefab, Vector3.zero, Quaternion.identity);
+            Item newItem = Instantiate(ItemPrefab, new Vector3(0, 0, 0.5f), Quaternion.identity);
             RoomList[RoomList.Count - 1].AddRoomEntity(newItem);
 
             newItem.SetValue(Random.Range(Player.Instance.Value / ItemSpawnDivisorLower, Player.Instance.Value / ItemSpawnDivisorHigher));

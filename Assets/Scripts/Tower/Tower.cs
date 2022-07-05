@@ -87,7 +87,7 @@ public class Tower : MonoBehaviour
         for (int j = 0; j < Levels; j++)
         {
             int i = indices[j];
-            Room newRoom = Instantiate(RoomPrefab, new Vector3(0, RoomHeight, 0), Quaternion.identity);
+            Room newRoom = Instantiate(RoomPrefab, new Vector3(0, RoomHeight, 0.5f), Quaternion.identity);
             newRoom.transform.SetParent(this.transform, false);
             newRoom.ParentTower = this;
             RoomList[i] = newRoom;
