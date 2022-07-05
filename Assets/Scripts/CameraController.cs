@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, Player.Instance.transform.position + PlayerOffset + BaseOffset, Time.deltaTime * FollowSpeed);
         }
-        else
+        else if (PlayerTower.Instance != null)
         {
             transform.position = Vector3.Lerp(transform.position, PlayerTower.Instance.transform.position + BaseOffset, Time.deltaTime * FollowSpeed);
         }

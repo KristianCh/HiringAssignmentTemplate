@@ -2,40 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Class controlling movement between two point
-public class MovementAnimator
-{
-    // Animation parameters
-    public Player m_Player;
-    public float Speed;
-    public float T;
-    public Vector3 StartPosition;
-    public Vector3 EndPosition;
-
-    // Initialize values
-    public MovementAnimator(Player player, Vector3 startPosition, Vector3 endPosition, float speed = 1)
-    {
-        m_Player = player;
-        StartPosition = startPosition;
-        EndPosition = endPosition;
-        Speed = speed;
-        T = 0;
-    }
-
-    // Interpolate between positions and add an arc
-    // Returns position vector, z value is -1 if finished
-    public Vector3 UpdateAnimationPosition(float deltaTime)
-    {
-        T = Mathf.Min(1, T + Speed * deltaTime);
-
-        if (T >= 1)
-        {
-            return new Vector3(EndPosition.x, EndPosition.y, -1);
-        }
-        return Vector3.Lerp(StartPosition, EndPosition, T) + new Vector3(0, Mathf.Sin(T * Mathf.PI) * 2, 0);
-    }
-}
-
 public class Player : RoomEntity
 {
     // Instance
@@ -44,8 +10,8 @@ public class Player : RoomEntity
     public Collider2D m_Collider2D;
 
     // Invoked on finishing of movement
-    public delegate void OnFinishMovement();
-    public static OnFinishMovement onFinishMovement;
+    public delegate void OnFinishMovementCallback();
+    public static OnFinishMovementCallback onFinishMovementCallback;
 
     // Animator instance
     private MovementAnimator m_MovementAnimator;
@@ -78,7 +44,7 @@ public class Player : RoomEntity
                 // Movement finished, enable raycast collider, remove animator and invoke on finish movement functions
                 m_Collider2D.enabled = true;
                 m_MovementAnimator = null;
-                onFinishMovement?.Invoke();
+                onFinishMovementCallback?.Invoke();
 
                 // Set z to 0
                 pos.z = 0;
@@ -86,6 +52,7 @@ public class Player : RoomEntity
             // Set position
             transform.position = pos;
         }
+        // Make camera follow player
     }
 
     // Begins movement to position of target
@@ -112,5 +79,6 @@ public class Player : RoomEntity
         m_Collider2D.enabled = false;
         base.DestroyEntity();
         ApplyDeathForce(-1f);
+        GameManager.Instance.OnPlayerDeath();
     }
 }

@@ -39,6 +39,12 @@ public class Room : MonoBehaviour
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, TargetPosition, Time.deltaTime * 10);
     }
 
+    public static void ResetLevelValues()
+    {
+        LastLevelMaxValue = 8;
+        TotalEnemyValues = 8;
+    }
+
     /*
      * Player interaction with room
      * If room is empty, player will move to it. Empty rooms should only be in the player tower
@@ -50,7 +56,7 @@ public class Room : MonoBehaviour
         {
             // Begin attack movement to first room entity
             Player.Instance.BeginMovement(RoomEntities[0], -1);
-            Player.onFinishMovement += OnAttackMovementComplete;
+            Player.onFinishMovementCallback += OnAttackMovementComplete;
         }
         else if (Player.Instance != null)
         {
@@ -62,7 +68,7 @@ public class Room : MonoBehaviour
     //Processes completed attack
     public void OnAttackMovementComplete()
     {
-        Player.onFinishMovement = null;
+        Player.onFinishMovementCallback = null;
         // Compare room entities, get if player won
         bool playerWon = RoomEntities[0].CompareRoomEntity(Player.Instance);
         // If player lost return
@@ -77,21 +83,21 @@ public class Room : MonoBehaviour
             // If room should be removed, add on return to room to on movement finished
             if (RemoveOnEmpty)
             {
-                Player.onFinishMovement += OnReturnToRoom;
+                Player.onFinishMovementCallback += OnReturnToRoom;
             }
         }
         else
         {
             // Begin attack on next entity
             Player.Instance.BeginMovement(RoomEntities[0], -1);
-            Player.onFinishMovement += OnAttackMovementComplete;
+            Player.onFinishMovementCallback += OnAttackMovementComplete;
         }
     }
 
     // When player returns to starting room, remove empty room
     public void OnReturnToRoom()
     {
-        Player.onFinishMovement = null;
+        Player.onFinishMovementCallback = null;
         ParentTower.RemoveRoom(this);
         Destroy(gameObject);
     }

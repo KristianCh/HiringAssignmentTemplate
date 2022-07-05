@@ -6,9 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public int TowersToSpawn = 3;
     public int MinTowerHeight = 4;
+    private int DestroyedTowers = 0;
     public Tower TowerPrefab;
 
-    public GameManager Instance;
+    public static GameManager Instance;
+
+    public EndGameMenuManager EndGameMenuPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +22,7 @@ public class GameManager : MonoBehaviour
             Destroy(Instance.gameObject);
         }
         Instance = this;
-
-        GenerateTowers();
+        Room.ResetLevelValues();
     }
 
     public void GenerateTowers()
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
         {
             Tower newTower = Instantiate(TowerPrefab, new Vector3(4 + i * 8, 0, 0), Quaternion.identity);
             newTower.Levels = Random.Range(MinTowerHeight, TotalLevels + MinTowerHeight + 1);
+            newTower.transform.SetParent(transform, false);
             TotalLevels += newTower.Levels;
             newTower.GenerateTower();
         }
@@ -39,5 +42,38 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void FinishGame(bool success)
+    {
+        EndGameMenuManager end = Instantiate(EndGameMenuPrefab, Vector3.zero, Quaternion.identity);
+        if (success)
+        {
+
+        }
+        else
+        {
+            end.TitleText.text = "Game Over";
+        }
+    }
+
+    public void OnTowerDestroyed(Tower tower)
+    {
+        PlayerTower.Instance.TargetPosition = tower.transform.position;
+        DestroyedTowers++;
+        if (DestroyedTowers == TowersToSpawn)
+        {
+            FinishGame(true);
+        }
+    }
+
+    public void OnPlayerDeath()
+    {
+        FinishGame(false);
+    }
+
+    public void DestroyGameLevel()
+    {
+        Destroy(gameObject);
     }
 }

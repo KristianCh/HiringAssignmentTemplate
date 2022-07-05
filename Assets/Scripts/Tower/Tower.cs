@@ -109,7 +109,7 @@ public class Tower : MonoBehaviour
     // Move player tower to this position and destroy game object
     public void DestroyTower()
     {
-        PlayerTower.Instance.TargetPosition = transform.position;
+        GameManager.Instance.OnTowerDestroyed(this);
         Destroy(gameObject);
     }
 }
