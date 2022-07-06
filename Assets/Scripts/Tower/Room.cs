@@ -30,7 +30,7 @@ public class Room : MonoBehaviour
     private float ValueRoomMult = 2f;
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, TargetPosition, Time.deltaTime * 10);
     }

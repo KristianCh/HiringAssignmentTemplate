@@ -21,7 +21,7 @@ public class AssetManager : MonoBehaviour
     public static AssetManager Instance;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         // Set up instance
         if (Instance != null)

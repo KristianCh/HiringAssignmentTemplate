@@ -15,13 +15,13 @@ public class DragLine : MonoBehaviour
     private LineRenderer m_LineRenderer;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         m_LineRenderer = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         // On mouse down
         if (Input.GetMouseButtonDown(0))

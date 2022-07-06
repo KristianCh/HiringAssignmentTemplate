@@ -20,7 +20,6 @@ public class MainMenuManager : MonoBehaviour
     public void QuitGame()
     {
         // Play sound, close app
-        SoundManager.Instance.PlayButtonAudio();
         Application.Quit();
     }
 }

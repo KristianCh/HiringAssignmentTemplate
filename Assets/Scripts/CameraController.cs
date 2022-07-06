@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     private float FollowSpeed = 3;
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         // Follow player if exists, else go to start
         if (Player.Instance != null)

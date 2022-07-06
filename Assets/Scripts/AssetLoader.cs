@@ -14,7 +14,7 @@ public class AssetLoader : MonoBehaviour
     public SpriteSelection Type;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         // Apply sprites/font
         Sprite sprite = AssetManager.Instance.GetSpriteAsset(Type);

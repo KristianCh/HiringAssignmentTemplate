@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
     public EndGameMenuManager EndGameMenuPrefab;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         // Set up instance
         if (Instance != null)

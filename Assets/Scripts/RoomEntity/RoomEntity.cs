@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class RoomEntity : MonoBehaviour
+public abstract class RoomEntity : MonoBehaviour
 {
     // Value of entity
     public int Value;
