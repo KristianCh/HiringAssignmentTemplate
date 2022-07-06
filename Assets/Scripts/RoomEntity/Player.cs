@@ -32,21 +32,11 @@ public class Player : RoomEntity
         }
         Instance = this;
 
-        // Set random sprite from selection
-        if (AssetManager.Instance.SpriteData != null && AssetManager.Instance.SpriteData.PlayerSprites.Count > 0)
-        {
-            m_SpriteRenderer.sprite =
-                AssetManager.Instance.SpriteData.PlayerSprites[Random.Range(0, AssetManager.Instance.SpriteData.PlayerSprites.Count)];
-        }
         // Set up values from scriptable object
         if (PlayerData != null)
         {
             JumpSpeed = PlayerData.JumpSpeed;
             FloorOffset = PlayerData.FloorOffset;
-            if (PlayerData.OverrideSprite)
-            {
-                m_SpriteRenderer.sprite = PlayerData.PlayerSprite;
-            }
         }
     }
 
@@ -78,7 +68,7 @@ public class Player : RoomEntity
     {
         SoundManager.Instance.PlayJumpAudio();
         m_Collider2D.enabled = false;
-        m_MovementAnimator = new MovementAnimator(this, transform.position, target.transform.position + new Vector3(xOffset, FloorOffset, 0.5f), JumpSpeed);
+        m_MovementAnimator = new MovementAnimator(transform.position, target.transform.position + new Vector3(xOffset, FloorOffset, 0.5f), JumpSpeed);
     } 
 
     // Move player to room

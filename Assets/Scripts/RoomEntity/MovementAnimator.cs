@@ -6,16 +6,14 @@ using UnityEngine;
 public class MovementAnimator
 {
     // Animation parameters
-    public Player m_Player;
     public float Speed;
     public float T;
     public Vector3 StartPosition;
     public Vector3 EndPosition;
 
     // Initialize values
-    public MovementAnimator(Player player, Vector3 startPosition, Vector3 endPosition, float speed = 1)
+    public MovementAnimator(Vector3 startPosition, Vector3 endPosition, float speed = 1)
     {
-        m_Player = player;
         StartPosition = startPosition;
         EndPosition = endPosition;
         Speed = speed;

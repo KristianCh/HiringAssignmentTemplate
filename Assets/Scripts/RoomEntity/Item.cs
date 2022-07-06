@@ -7,17 +7,6 @@ public class Item : RoomEntity
     // Particles prefab
     public GameObject PickupParticlesPrefab;
 
-    public override void Start()
-    {
-        base.Start();
-        // Set random sprite from selection
-        if (AssetManager.Instance.SpriteData != null && AssetManager.Instance.SpriteData.ItemSprites.Count > 0)
-        {
-            m_SpriteRenderer.sprite =
-                AssetManager.Instance.SpriteData.ItemSprites[Random.Range(0, AssetManager.Instance.SpriteData.ItemSprites.Count)];
-        }
-    }
-
     // Add value to other and destroy item
     public override bool CompareRoomEntity(RoomEntity other)
     {

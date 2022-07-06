@@ -12,9 +12,6 @@ public class Room : MonoBehaviour
     public List<RoomEntity> RoomEntities = new List<RoomEntity>();
     // Tower containing this room
     public Tower ParentTower;
-    // Sprite
-    public SpriteRenderer m_SpriteRenderer;
-    // Level of room
     /*
      * Remove room when it is empty
      * Should be true for enemy tower and false for player tower
@@ -25,24 +22,12 @@ public class Room : MonoBehaviour
     public Enemy EnemyPrefab;
 
     // Values of previous enemy and all enemies together
-    [SerializeField]
-    private static int LastLevelMaxValue = 8;
+    private static int LastRoomMaxValue = 8;
     private static int TotalEnemyValues = 8;
 
     private float EnemySpawnOffset = 1.5f;
     // Multiplier of value from previously generated room
-    private float ValueLevelMult = 2f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Set random sprite from selection
-        if (AssetManager.Instance.SpriteData != null && AssetManager.Instance.SpriteData.RoomSprites.Count > 0)
-        {
-            m_SpriteRenderer.sprite =
-                AssetManager.Instance.SpriteData.RoomSprites[Random.Range(0, AssetManager.Instance.SpriteData.RoomSprites.Count)];
-        }
-    }
+    private float ValueRoomMult = 2f;
 
     // Update is called once per frame
     void Update()
@@ -51,9 +36,9 @@ public class Room : MonoBehaviour
     }
 
     // Reset static values - new game
-    public static void ResetLevelValues()
+    public static void ResetRoomValues()
     {
-        LastLevelMaxValue = 8;
+        LastRoomMaxValue = 8;
         TotalEnemyValues = 8;
     }
 
@@ -140,7 +125,7 @@ public class Room : MonoBehaviour
         int enemiesToSpawn = Random.Range(1, 3);
 
         // highest value in this room
-        int highestLevelValue = 0;
+        int highestRoomValue = 0;
 
         // Generate enemies
         for (int i = enemiesToSpawn - 1; i >= 0; i--)
@@ -154,17 +139,17 @@ public class Room : MonoBehaviour
             // Calculate enemy value
             int value = (int)Mathf.Min(
                     TotalEnemyValues, 
-                    Mathf.Round(LastLevelMaxValue * ValueLevelMult + Random.Range(-LastLevelMaxValue / ValueLevelMult, 0))
+                    Mathf.Round(LastRoomMaxValue * ValueRoomMult + Random.Range(-LastRoomMaxValue / ValueRoomMult, 0))
                 );
             // Set values
             newEnemy.SetValue(value);
             TotalEnemyValues += value;
-            if (value > highestLevelValue) 
+            if (value > highestRoomValue) 
             { 
-                highestLevelValue = value; 
+                highestRoomValue = value; 
             }
         }
         // Save max value from this room
-        LastLevelMaxValue = highestLevelValue;
+        LastRoomMaxValue = highestRoomValue;
     }
 }

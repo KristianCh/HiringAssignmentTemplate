@@ -7,6 +7,4 @@ public class PlayerScriptableObject : ScriptableObject
 {
     public float JumpSpeed;
     public float FloorOffset;
-    public bool OverrideSprite;
-    public Sprite PlayerSprite;
 }

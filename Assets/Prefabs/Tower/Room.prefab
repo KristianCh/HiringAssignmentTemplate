@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1477094963753277369}
   - component: {fileID: 6650668815964015067}
+  - component: {fileID: 4904847626379438325}
   m_Layer: 7
   m_Name: RoomSprite
   m_TagString: Untagged
@@ -84,6 +85,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4904847626379438325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3335652693626219229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac10ae826535ce2498356370aa369bb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Text: {fileID: 0}
+  m_Image: {fileID: 0}
+  m_SpriteRenderer: {fileID: 6650668815964015067}
+  Type: 3
 --- !u!1 &7400336399789390153
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,8 +150,6 @@ MonoBehaviour:
   TargetPosition: {x: 0, y: 2.4, z: 0}
   RoomEntities: []
   ParentTower: {fileID: 0}
-  m_SpriteRenderer: {fileID: 6650668815964015067}
-  SpriteData: {fileID: 11400000, guid: 6141fe7ee18dfeb4c912952696a38135, type: 2}
   RemoveOnEmpty: 1
   EnemyPrefab: {fileID: 706977191741871013, guid: bf7817be5a6d9b04cb86d65ef8021467,
     type: 3}

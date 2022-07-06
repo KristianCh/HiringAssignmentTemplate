@@ -11,8 +11,6 @@ public class RoomEntity : MonoBehaviour
     public bool IsDead = false;
     // Value text component
     public TMP_Text ValueText;
-    // Sprite
-    public SpriteRenderer m_SpriteRenderer;
     // Room in which this entity is
     public Room ParentRoom;
     // Rigidbody
@@ -25,8 +23,6 @@ public class RoomEntity : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        // Get sprite renderer
-        m_SpriteRenderer = GetComponent<SpriteRenderer>();
         // Set value text
         ValueText.text = Value.ToString();
         ValueText.color *= new Color(Random.Range(0.5f, 1.5f), Random.Range(0.5f, 1.5f), Random.Range(0.5f, 1.5f), 1);

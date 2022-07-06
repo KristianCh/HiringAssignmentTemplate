@@ -325,10 +325,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6734336708758977432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fce91521965ed14eb52eeedaf3d4586, type: 3}
+  m_Script: {fileID: 11500000, guid: ac10ae826535ce2498356370aa369bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Text: {fileID: 3983301395112346277}
+  m_Image: {fileID: 0}
+  m_SpriteRenderer: {fileID: 0}
+  Type: 6
 --- !u!1 &7590587513189281142
 GameObject:
   m_ObjectHideFlags: 0

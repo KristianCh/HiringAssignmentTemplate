@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ce6820e3523af4ebfd2c4b0c897162, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: 
-  TowersToSpawn: 3
+  TowersToGenerate: 3
   UseTowerCount: 1
   MinTowerHeight: 4
   MaxTowerHeight: 10

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     // Number of rooms in tower
-    public int Levels = 4;
+    public int Rooms = 4;
     // List of rooms in tower
     public List<Room> RoomList = new List<Room>();
 
@@ -27,7 +27,7 @@ public class Tower : MonoBehaviour
     }
 
     /*
-     * Remove room at level from tower, move rooms above removed down
+     * Remove room from tower, move rooms above removed down
      * Rooms should only be removed from enemy towers
      */
     public virtual void RemoveRoom(Room room)
@@ -66,25 +66,25 @@ public class Tower : MonoBehaviour
      */
     public void GenerateTower()
     {
-        // Generate indices array from 0 to Levels and initialize room list
-        int[] indices = new int[Levels];
-        for (int i = 0; i < Levels; i++)
+        // Generate indices array from 0 to Rooms and initialize room list
+        int[] indices = new int[Rooms];
+        for (int i = 0; i < Rooms; i++)
         {
             RoomList.Add(null);
             indices[i] = i;
         }
             
         // Shuffle indices array
-        for (int i = 0; i < Levels; i++)
+        for (int i = 0; i < Rooms; i++)
         {
-            int rnd = Random.Range(0, Levels);
+            int rnd = Random.Range(0, Rooms);
             int temp = indices[rnd];
             indices[rnd] = indices[i];
             indices[i] = temp;
         }
 
         // Instantiate new rooms
-        for (int j = 0; j < Levels; j++)
+        for (int j = 0; j < Rooms; j++)
         {
             int i = indices[j];
             Room newRoom = Instantiate(RoomPrefab, new Vector3(0, RoomHeight, 0.5f), Quaternion.identity);
@@ -100,7 +100,7 @@ public class Tower : MonoBehaviour
         RoomList[0].TargetPosition = Vector3.zero;
         RoomList[0].transform.localPosition = Vector3.zero;
         // Set parent rooms for each above first
-        for (int i = 1; i < Levels; i++)
+        for (int i = 1; i < Rooms; i++)
         {
             RoomList[i].transform.SetParent(RoomList[i-1].transform, false);
         }

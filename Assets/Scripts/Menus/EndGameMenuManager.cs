@@ -33,7 +33,7 @@ public class EndGameMenuManager : MonoBehaviour
         // Instantiate and set up level and destroy end menu
         LevelManager.Instance.DestroyGameLevel();
         LevelManager level = Instantiate(GameLevelPrefab, Vector3.zero, Quaternion.identity);
-        level.TowersToSpawn = CustomTowerAmount;
+        level.TowersToGenerate = CustomTowerAmount;
         level.Init();
         Destroy(gameObject);
     }
